@@ -1,7 +1,8 @@
 const postcode = document.querySelector(".postcode");
 let lat = 0;
 let long = 0;
-
+let totalCrimes = 0
+let crimes = {}
 postcode.addEventListener("submit", event => {
   event.preventDefault();
   const postcodeValue = event.target.elements.postcode.value;
@@ -15,8 +16,13 @@ postcode.addEventListener("submit", event => {
     })
     .then(dealWithResponse)
     .then(data => {
-      data.forEach(item => console.log(item.category));
-      // console.log(data)
+        totalCrimes = data.length
+        data.forEach(item => {
+            if (!crimes[item.category]) crimes[item.category] = 0
+            crimes[item.category] += 1 
+            console.log(item.category)
+        });
+        // console.log(totalCrimes, crimes)
     })
     .catch(error => {
       console.log(error);
