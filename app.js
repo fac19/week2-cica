@@ -15,3 +15,12 @@ postcode.addEventListener('submit', event => {
         long += data.result.longitude
     })
 })
+
+  
+// function initMap() {
+//     let map = new google.maps.Map(document.querySelector('#map'), {
+//         zoom: 1,
+//         center:{lat:51.5230, lng:-0.101292},
+//         streetViewControl: false,
+//         mapTypeControl: false,
+//     })};
