@@ -4,9 +4,27 @@
   scroll-behavior: smooth;
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+}
 
 label {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+button {
+  align-self: center;
+  margin-top: 2rem;
+  width: 50%;
 }
