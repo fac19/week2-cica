@@ -4,6 +4,7 @@
   scroll-behavior: smooth;
 }
 
+
 form {
   display: flex;
   flex-direction: column;
@@ -14,6 +15,14 @@ label {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+/* figure {
+  margin: 0;
+} */
+
+.svgText {
+  font-size: 1px;
 }
 
 body {
@@ -40,10 +49,38 @@ button {
 }
 
 svg {
-  width: 100vw;
+  width: 90vw;
   /* height: 100vh; */
 }
 
-:not(svg) {
-  transform-origin: 0px 0px;
+.bar {
+  fill: #aaa;
+  /* height: 21px; */
+  transition: fill .3s ease;
+  cursor: pointer;
+  font-family: Helvetica, sans-serif;
+  
+}
+
+text {
+  color: #000;
+}
+/* 
+rect {
+  background-color: red;
+  fill: red ;
+} */
+.bar:hover,
+.bar:focus {
+  fill: red !important;
+}
+
+figcaption {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
 }

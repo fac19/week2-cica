@@ -21,7 +21,6 @@ postcode.addEventListener("submit", event => {
       long = data.result.longitude;
       zoom = 15
       console.log(date.value)
-    //   console.log(lat, long);
 
     if (!date.value) return fetch(`https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${long}`);
 
@@ -33,9 +32,7 @@ postcode.addEventListener("submit", event => {
         data.forEach(item => {
             if (!crimes[item.category]) crimes[item.category] = 0
             crimes[item.category] += 1 
-            // console.log(item.category)
         });
-        console.log(totalCrimes, crimes)
     })
     .then(initMap)
     .then(createSvgContent)
@@ -59,26 +56,45 @@ function dealWithResponse(response) {
   }
 
   function createSvgContent() {
+
+    let objectKyes = Object.keys(crimes)
+    let objectValues = Object.values(crimes)
+    let maxWidth = Math.max(...objectValues)
+    console.log(maxWidth)
+    svg.setAttribute("viewBox", `0 0 ${maxWidth + 150} ${21.5 * objectValues.length}`)
+    console.log(objectKyes, objectValues)
+
     var svgNS = "http://www.w3.org/2000/svg"; 
     svgtitle.innerText = `Crime Statistics in ${postcodeValue}`
     const title = document.createElement("title")
     title.innerText = `Crime Statistics in ${postcodeValue}`
     title.setAttribute("id", "title")
     svg.appendChild(title)
+    let y = 0
+    objectValues.forEach((value, index) => {
+      const g = document.createElementNS(svgNS, "g")
+      g.classList.add("bar")
+      const rect = document.createElementNS(svgNS, "rect")
+      rect.setAttribute("x", "0")
+      rect.setAttribute("y", y)
+      rect.setAttribute("width", value)
+      rect.setAttribute("height", "20px")
+      const text = document.createElementNS(svgNS, "text")
+      text.setAttribute("x", value + 10)
+      text.setAttribute("y", 10 + y)
+      text.setAttribute("dy", "0.35em")
+      text.setAttribute("class", "svgText")
+      text.innerHTML = `${objectKyes[index]} ${objectValues[index]}`
+      y += 21
+          
+      g.appendChild(rect)
+      g.appendChild(text)
+
+      svg.appendChild(g)
+    })
     
-    const g = document.createElementNS(svgNS, "g")
-    g.classList.add("bar")
-    svg.appendChild(g)
+    // g.appendChild(rect)
 
-    const rect = document.createElement("rect")
-    rect.setAttribute("width", crimes.burglary)
-    rect.setAttribute("height", "20")
-    g.appendChild(rect)
-
-    const text = document.createElement("text")
-    text.setAttribute("x", "45")
-    text.setAttribute("y", "9.5")
-    text.setAttribute("dy", "0.35em")
-    text.innerText = "fake name"
-    g.appendChild(text)
+    // svg.appendChild(g)
+    
   }
