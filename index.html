@@ -1,35 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get your info</title>
-</head>
-<body>
-  <header class="title">
-    <h1>Are you REALLY safe?</h1>
-  </header>
-  <form action="" class="postcode">
-    <label for="postcode date">
-      <input name="postcode" id="postcode" type="text" placeholder="your post code here..">
-      <input type="month" name="date" id="date" min="2017-01" max="2020-01" placeholder="2020-01"> 
-    </label>
-    <button type="submit">Enter</button>
-  </form>
-  <div id="map"></div>
-  <section id="svgSection">
-    <figure>
-      <figcaption id="svgTitle"></figcaption>
-    <svg  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="chart" aria-labelledby="title" role="img">
-  
-</svg>
-</figure>
-  </section>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link href="style.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get your info</title>
+  </head>
+  <body>
+    <div class="banner"></div>
+    <header class="title">
+      <h1>Are you <span class="really fadeInUp">REALLY</span> safe? 🚓</h1>
+    </header>
+    <form action="" class="postcode">
+      <label for="postcode date">
+        Postcode:
+        <input
+          name="postcode"
+          id="postcode"
+          type="text"
+          placeholder=" Your post code here"
+        />
+        Date:
+        <input type="month" name="date" id="date" min="2017-01" max="2020-01" />
+      </label>
 
-<script src="app.js"></script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApyt224I8eHKHjNrZMZUZ6h5nCWm-0qus&callback=initMap"
-type="text/javascript"></script>
+      <button type="submit">Enter</button>
+    </form>
+    <div id="map"></div>
+    <section id="svgSection">
+      <figure>
+        <figcaption id="svgTitle"></figcaption>
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          class="chart"
+          aria-labelledby="title"
+          role="img"
+        ></svg>
+      </figure>
+    </section>
+
+    <div class="banner"></div>
+  </body>
+
+  <script src="app.js"></script>
+  <script
+    async
+    defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApyt224I8eHKHjNrZMZUZ6h5nCWm-0qus&callback=initMap"
+    type="text/javascript"
+  ></script>
 </html>
