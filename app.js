@@ -3,6 +3,9 @@ let lat = 0;
 let long = 0;
 let totalCrimes = 0
 let crimes = {}
+let date = document.querySelector("[name=date]")
+
+
 postcode.addEventListener("submit", event => {
   event.preventDefault();
   const postcodeValue = event.target.elements.postcode.value;
@@ -11,8 +14,9 @@ postcode.addEventListener("submit", event => {
     .then(data => {
       lat = data.result.latitude;
       long = data.result.longitude;
+      console.log(date.value)
     //   console.log(lat, long);
-      return fetch(`https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${long}`);
+      return fetch(`https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${long}&date=${date.value}`);
     })
     .then(dealWithResponse)
     .then(data => {
@@ -20,9 +24,9 @@ postcode.addEventListener("submit", event => {
         data.forEach(item => {
             if (!crimes[item.category]) crimes[item.category] = 0
             crimes[item.category] += 1 
-            console.log(item.category)
+            // console.log(item.category)
         });
-        // console.log(totalCrimes, crimes)
+        console.log(totalCrimes, crimes)
     })
     .catch(error => {
       console.log(error);
