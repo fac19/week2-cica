@@ -4,7 +4,64 @@
   scroll-behavior: smooth;
 }
 
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+}
+
+.really {
+  font-size: 0.9rem;
+  vertical-align: top;
+  animation-name: fadeInUp;
+  -webkit-animation-name: fadeInUp;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  
+}
+
+
+  @keyframes fadeInUp {
+        from {
+            transform: translate3d(0,0,0);
+            opacity: 0
+        }
+    
+        to {
+            transform: translate3d(0,20px,0);
+            opacity: 1
+        }
+    }
+
+
+    @-webkit-keyframes fadeInUp {
+      from {
+          transform: translate3d(0,0,0);
+          opacity: 0
+      }
+  
+      to {
+          transform: translate3d(0,20px,0);
+          opacity: 1
+      }
+  }
+  
+/* 
+.banner{
+  height: 100px;
+  width: 100vw;
+  background-image: url('/img/Sillitoe_Tartan_blue_and_white.png');
+  background-size: cover;
+} */
+
 form {
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
@@ -13,32 +70,32 @@ label {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+#postcode {
+  width: 10rem;
+}
+
+#date {
+  width: 11rem;
+}
+
+.emoji {
+  width: 4rem;
 }
 
 button {
   align-self: center;
-  margin-top: 2rem;
+  margin: 1.5rem auto;
   width: 50%;
-<<<<<<< HEAD
 }
 
 #map {
   width: 100%;
   height: 400px;
   background-color: grey;
-||||||| merged common ancestors
-=======
 }
 
 .mapouter {
   float: left;
->>>>>>> 3622e63c9942b160ab1c909ab9e997d9e48c8bf3
 }
