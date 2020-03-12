@@ -127,7 +127,20 @@ button {
   height: 400px;
   margin-bottom: 10%;
 }
+.loader {
+  display: none;
+  font-size: 2rem;
+  color: #aaa;
+  animation:blinkingText 1.2s infinite;
+}
 
+@keyframes blinkingText{
+  0%{     color: #aaa;    }
+  49%{    color: #aaa; }
+  60%{    color: transparent; }
+  99%{    color:transparent;  }
+  100%{   color: #aaa;    }
+}
 /* start of the bar section */
 svg {
   width: 90vw;
