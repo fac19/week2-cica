@@ -7,11 +7,12 @@ let crimes = {};
 let postcodeValue = "";
 let date = document.querySelector("[name=date]");
 
-const svg = document.querySelector("svg");
+var svg = document.querySelector("svg");
 const svgtitle = document.querySelector("#svgTitle");
 
 postcode.addEventListener("submit", event => {
-
+  totalCrimes = 0;
+  crimes = {};
   event.preventDefault();
   postcodeValue = event.target.elements.postcode.value;
   fetch(`https://api.postcodes.io/postcodes/${postcodeValue}`)
@@ -429,12 +430,19 @@ function initMap() {
 }
 
 function createSvgContent() {
+  while (svg.firstChild) {
+    svg.removeChild(svg.lastChild);
+  }
+  console.log(svg)
+  // var x = window.matchMedia("(max-width: 800px)")
+
+  // if(x.matches){
   let objectKyes = Object.keys(crimes);
   let objectValues = Object.values(crimes);
   let maxWidth = Math.max(...objectValues);
   svg.setAttribute(
     "viewBox",
-    `0 0 ${maxWidth + 150} ${21.5 * objectValues.length}`
+    `0 0 ${maxWidth + 200} ${21.5 * objectValues.length}`
   );
 
   var svgNS = "http://www.w3.org/2000/svg";
@@ -445,14 +453,14 @@ function createSvgContent() {
   svg.appendChild(title);
   let y = 0;
   objectValues.forEach((value, index) => {
-    const g = document.createElementNS(svgNS, "g");
+    let g = document.createElementNS(svgNS, "g");
     g.classList.add("bar");
-    const rect = document.createElementNS(svgNS, "rect");
+    let rect = document.createElementNS(svgNS, "rect");
     rect.setAttribute("x", "0");
     rect.setAttribute("y", y);
     rect.setAttribute("width", value);
     rect.setAttribute("height", "20px");
-    const text = document.createElementNS(svgNS, "text");
+    let text = document.createElementNS(svgNS, "text");
     text.setAttribute("x", value + 10);
     text.setAttribute("y", 10 + y);
     text.setAttribute("dy", "0.35em");
@@ -464,5 +472,8 @@ function createSvgContent() {
     g.appendChild(text);
 
     svg.appendChild(g);
+    textColor = document.querySelector("figcaption")
+    textColor.style.color = "white"
   });
+// }
 }
