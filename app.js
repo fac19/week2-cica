@@ -8,7 +8,7 @@ let postcodeValue = ""
 let date = document.querySelector("[name=date]")
 
 const svg = document.querySelector("svg")
-console.log(svg)
+// console.log(svg)
 const svgtitle = document.querySelector("#svgTitle")
 
 postcode.addEventListener("submit", event => {
