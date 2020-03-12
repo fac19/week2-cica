@@ -16,13 +16,14 @@ postcode.addEventListener("submit", event => {
     })
     .then(dealWithResponse)
     .then(data => {
+        // console.log(data)
         totalCrimes = data.length
         data.forEach(item => {
             if (!crimes[item.category]) crimes[item.category] = 0
             crimes[item.category] += 1 
             console.log(item.category)
         });
-        // console.log(totalCrimes, crimes)
+        console.log(totalCrimes, crimes)
     })
     .catch(error => {
       console.log(error);
@@ -33,3 +34,10 @@ function dealWithResponse(response) {
     if (!response.ok) throw new Error(response.status);
       return response.json();
 }
+
+
+// n =  new Date();
+// y = n.getFullYear();
+// m = n.getMonth() -1;
+var date = document.getElementById("date").value
+console.log(date)
