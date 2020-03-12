@@ -4,38 +4,233 @@
   scroll-behavior: smooth;
 }
 
+body {
+  margin: 0 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #24282B;
+}
+
+figcaption {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.title {
+  width: 90vw;
+  padding: 0 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.really {
+  padding: 0 3%;
+  font-size: 1.1rem;
+  /* text-shadow: 1px 1px rgb(14, 163, 163); */
+  vertical-align: middle;
+  animation-duration: 3s;
+  animation-name: fadeIn;
+  animation-fill-mode: both;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  
+  to {
+    opacity: 1
+  }
+}
+
+
+.banner{
+  height: 3rem;
+  width: 100vw;
+  background-image: url('/img/caution.jpg');
+  background-size: cover;
+}
+
 form {
+  width: 90%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+  
 }
 
 label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 0.1rem;
+  color: white;
+  font-size: 1.3rem;
+  line-height: 2rem;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+#postcode {
+  width: 15rem;
+}
+
+#date {
+  width: 15rem;
+}
+
+input[type="text"]{
+  margin-bottom: 8%;
+}
+input[type="month"], input[type="text"]  {
+  border: none;
+  width: 580px;
+  outline: none;
+  font-size: 1rem;
+  height: 60px;
+  margin-top: 2%;
+}
+
+.emoji {
+  width: 4rem;
 }
 
 button {
   align-self: center;
-  margin-top: 2rem;
-  width: 50%;
+  margin: 2.5rem auto 1.5rem auto;
+  width: 200px;
+  height: 60px;
+  border: none;
+  font-size: 1.7rem;
+  border-radius: 5px;
+  background-color: #F6D318;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  outline: none;
 }
 
-.mapouter {
-  float: left;
+#map {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 10%;
 }
 
-/* #date {
--webkit-datetime-edit-year-field:not([aria-valuenow]);
--webkit-datetime-edit-month-field:not([aria-valuenow]);
--webkit-datetime-edit-day-field:not([aria-valuenow]);
-color: transparent;
+/* start of the bar section */
+svg {
+  width: 90vw;
+  /* height: 100vh; */
+}
+
+.bar {
+  fill: #aaa;
+  /* height: 21px; */
+  transition: fill .3s ease;
+  cursor: pointer;
+  font-family: Helvetica, sans-serif;
+  
+}
+
+text {
+  color: #000;
+}
+/* 
+rect {
+  background-color: red;
+  fill: red ;
 } */
+.bar:hover,
+.bar:focus {
+  fill: #F6D318 !important;
+}
+
+figcaption {
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 20px;
+}
+/* end of bar section */
+
+
+
+@media screen and (min-width: 800px) {
+  .title {
+    font-size: 2rem;
+  }  
+  
+  .really {
+    font-size: 2rem;
+  }
+  
+.banner {
+  background-size: contain;
+}
+
+  label {
+    flex-direction: row;
+  }
+  
+  #postcode {
+    margin-right: 40px;
+  }
+  input[type="month"], input[type="text"] {
+    margin-left: 10px;
+    margin-top: 0;
+  }
+  
+  input[type="text"]{
+    margin-bottom: 0;
+  }
+
+  figcaption {
+    font-size: 4rem;
+  }
+}
+
+
+
+
+@media screen and (min-width: 1200px) {
+  .title {
+    margin-top: 3%;
+    font-size: 3rem;
+  }  
+  
+  figcaption {
+    font-size: 4.5rem;
+  }
+
+  form {
+    margin-bottom: 2%;
+  }
+  
+  .really {
+    font-size: 3rem;
+  }
+  
+  #map {
+    width: 80%;
+    margin-bottom: 6%;
+  }
+  
+  input[type="text"]{
+    margin-bottom: 0;
+  }
+  
+  input[type="month"], input[type="text"] {
+    margin-left: 10px;
+    margin-top: 0;
+  }
+}
