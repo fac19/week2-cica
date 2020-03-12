@@ -27,8 +27,18 @@ button {
   align-self: center;
   margin-top: 2rem;
   width: 50%;
+<<<<<<< HEAD
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+||||||| merged common ancestors
+=======
 }
 
 .mapouter {
   float: left;
+>>>>>>> 3622e63c9942b160ab1c909ab9e997d9e48c8bf3
 }
