@@ -27,43 +27,34 @@ body {
   /* text-shadow: 1px 1px rgb(14, 163, 163); */
   vertical-align: middle;
   animation-duration: 3s;
+  animation-name: fadeIn;
   animation-fill-mode: both;
 }
 
 
-.fadeInUp {
-  opacity: 0;
-  animation-name: fadeInUp;
-  -webkit-animation-name: fadeInUp;
-}
-
-@keyframes fadeInUp {
+@keyframes fadeIn {
   from {
-    transform: translateY(0);
     opacity: 0;
   }
   
   to {
-    transform: translateY(100px));
     opacity: 1
   }
 }
 
-@-webkit-keyframes fadeInUp {
+@-webkit-keyframes fadeIn {
   from {
-    transform:  translateY(0);
     opacity: 0;
   }
   
   to {
-    transform:  translateY(100px);
     opacity: 1
   }
 }
 
 
 .banner{
-  height: 50px;
+  height: 3rem;
   width: 100vw;
   background-image: url('/img/caution.jpg');
   background-size: cover;
@@ -144,10 +135,13 @@ button {
     font-size: 2rem;
   }
   
+.banner {
+  background-size: contain;
+}
+
   label {
     flex-direction: row;
   }
-  
   
   #postcode {
     margin-right: 40px;
