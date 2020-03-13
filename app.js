@@ -1,13 +1,14 @@
 const postcode = document.querySelector(".postcode");
+const date = document.querySelector("[name=date]");
+const loader = document.querySelector(".loader")
+const svg = document.querySelector("svg");
+const svgtitle = document.querySelector("#svgTitle");
+
 let lat = 51.510357;
 let long = -0.116773;
 let zoom = 8;
 let crimes = {};
 let postcodeValue = "";
-const date = document.querySelector("[name=date]");
-const loader = document.querySelector(".loader")
-const svg = document.querySelector("svg");
-const svgtitle = document.querySelector("#svgTitle");
 
 
 n =  new Date();
@@ -437,7 +438,7 @@ function createSvgContent() {
     svg.removeChild(svg.lastChild);
   }
 
-  let objectKyes = Object.keys(crimes);
+  let objectKeys = Object.keys(crimes);
   let objectValues = Object.values(crimes);
   let maxWidth = Math.max(...objectValues);
   svg.setAttribute(
@@ -465,7 +466,7 @@ function createSvgContent() {
     text.setAttribute("y", 10 + y);
     text.setAttribute("dy", "0.35em");
     text.setAttribute("class", "svgText");
-    text.textContent = `${objectKyes[index]} ${objectValues[index]}`;
+    text.textContent = `${objectKeys[index]} ${objectValues[index]}`;
     y += 21;
 
     g.appendChild(rect);
