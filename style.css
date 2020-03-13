@@ -29,11 +29,12 @@ figcaption {
 .really {
   padding: 0 3%;
   font-size: 1.1rem;
-  /* text-shadow: 1px 1px rgb(14, 163, 163); */
   vertical-align: middle;
   animation-duration: 3s;
   animation-name: fadeIn;
-  animation-fill-mode: both;
+  animation-delay: 1s;
+  opacity: 0;
+  animation-fill-mode: forwards;
 }
 
 
@@ -61,7 +62,7 @@ figcaption {
 .banner{
   height: 3rem;
   width: 100vw;
-  background-image: url('/img/caution.jpg');
+  background-image: url('img/caution.jpg');
   background-size: cover;
 }
 
