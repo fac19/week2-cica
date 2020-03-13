@@ -13,9 +13,10 @@
   <body>
     <div class="banner"></div>
     <header class="title">
-      <h1>Are you <span class="really fadeInUp">REALLY</span> safe? 🚓</h1>
+      <h1>Are you <span class="really">REALLY</span> safe? 🚓</h1>
     </header>
     <form action="" class="postcode">
+      <div class="inputBox">
       <label for="postcode">
         Postcode:
         <input
@@ -25,12 +26,12 @@
           placeholder=" Your post code here"
           required
         />
-        <label for="date">
-          Date:
-          <input type="month" name="date" id="date" min="2017-01" max="2020-01" required />
-        </label>
       </label>
-
+          <label for="date">
+            Date:
+            <input type="month" name="date" id="date" min="2017-01" max="2020-01" required />
+          </label>
+          </div>
       <button type="submit">Enter</button>
     </form>
     <div id="map"></div>
