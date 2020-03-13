@@ -1,32 +1,32 @@
 const postcode = document.querySelector(".postcode");
-let lat = 51.510357;
-let long = -0.116773;
-let zoom = 8;
-let totalCrimes = 0;
-let crimes = {};
-let postcodeValue = "";
 const date = document.querySelector("[name=date]");
 const loader = document.querySelector(".loader")
 const svg = document.querySelector("svg");
 const svgtitle = document.querySelector("#svgTitle");
+
+let lat = 51.510357;
+let long = -0.116773;
+let zoom = 8;
+
+let crimes = {};
+let postcodeValue = "";
 
 
 n =  new Date();
 y = n.getFullYear();
 m = n.getMonth() -1;
 let formDate = document.getElementById('date');
+
 formDate.setAttribute('max',  `${y}-0${m}`)
 
 postcode.addEventListener("submit", event => {
   loader.style.display = "block"
-  totalCrimes = 0;
   crimes = {};
   event.preventDefault();
   postcodeValue = event.target.elements.postcode.value;
   fetch(`https://api.postcodes.io/postcodes/${postcodeValue}`)
     .then(dealWithResponse)
     .then(data => {
-      console.log(data)
       lat = data.result.latitude;
       long = data.result.longitude;
       zoom = 15;
@@ -37,7 +37,6 @@ postcode.addEventListener("submit", event => {
     })
     .then(dealWithResponse)
     .then(data => {
-      totalCrimes = data.length;
       data.forEach(item => {
         if (!crimes[item.category]) crimes[item.category] = 0;
         crimes[item.category] += 1;
@@ -54,9 +53,11 @@ function toggleToNone() {
   loader.style.display = "none"
 }
 function dealWithResponse(response) {
-  // if (!response.ok) throw new Error(response.status);
-  if (response.statusCode !== 200) (loader.textContent = 'Error, postcode not found!')
-  return response.json();
+  if (!response.ok) {
+    loader.textContent = 'Error, postcode not found!'
+    throw new Error(response.status);
+  } 
+  return response.json()
 }
 
 function initMap() {
@@ -440,9 +441,8 @@ function createSvgContent() {
   while (svg.firstChild) {
     svg.removeChild(svg.lastChild);
   }
-  console.log(svg)
- 
-  let objectKyes = Object.keys(crimes);
+
+  let objectKeys = Object.keys(crimes);
   let objectValues = Object.values(crimes);
   let maxWidth = Math.max(...objectValues);
   svg.setAttribute(
@@ -470,7 +470,7 @@ function createSvgContent() {
     text.setAttribute("y", 10 + y);
     text.setAttribute("dy", "0.35em");
     text.setAttribute("class", "svgText");
-    text.textContent = `${objectKyes[index]} ${objectValues[index]}`;
+    text.textContent = `${objectKeys[index]} ${objectValues[index]}`;
     y += 21;
 
     g.appendChild(rect);
