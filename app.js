@@ -6,11 +6,12 @@ let totalCrimes = 0;
 let crimes = {};
 let postcodeValue = "";
 let date = document.querySelector("[name=date]");
-
-var svg = document.querySelector("svg");
+let loader = document.querySelector(".loader")
+let svg = document.querySelector("svg");
 const svgtitle = document.querySelector("#svgTitle");
 
 postcode.addEventListener("submit", event => {
+  loader.style.display = "block"
   totalCrimes = 0;
   crimes = {};
   event.preventDefault();
@@ -41,12 +42,15 @@ postcode.addEventListener("submit", event => {
       });
     })
     .then(initMap)
+    .then(toggleToNone)
     .then(createSvgContent)
     .catch(error => {
       console.log(error);
     });
 });
-
+function toggleToNone() {
+  loader.style.display = "none"
+}
 function dealWithResponse(response) {
   if (!response.ok) throw new Error(response.status);
   return response.json();
