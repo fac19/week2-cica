@@ -57,7 +57,7 @@ function dealWithResponse(response) {
     loader.textContent = 'Error, postcode not found!'
     throw new Error(response.status);
   } 
-
+  return response.json()
 }
 
 function initMap() {
