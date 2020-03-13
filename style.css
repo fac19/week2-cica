@@ -166,7 +166,7 @@ rect {
 } */
 .bar:hover,
 .bar:focus {
-  fill: #F6D318 !important;
+  fill: #F6D318;
 }
 
 figcaption {

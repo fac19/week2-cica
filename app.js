@@ -5,10 +5,17 @@ let zoom = 8;
 let totalCrimes = 0;
 let crimes = {};
 let postcodeValue = "";
-let date = document.querySelector("[name=date]");
-let loader = document.querySelector(".loader")
-let svg = document.querySelector("svg");
+const date = document.querySelector("[name=date]");
+const loader = document.querySelector(".loader")
+const svg = document.querySelector("svg");
 const svgtitle = document.querySelector("#svgTitle");
+
+
+n =  new Date();
+y = n.getFullYear();
+m = n.getMonth() -1;
+let formDate = document.getElementById('date');
+formDate.setAttribute('max',  `${y}-0${m}`)
 
 postcode.addEventListener("submit", event => {
   loader.style.display = "block"
@@ -19,15 +26,10 @@ postcode.addEventListener("submit", event => {
   fetch(`https://api.postcodes.io/postcodes/${postcodeValue}`)
     .then(dealWithResponse)
     .then(data => {
+      console.log(data)
       lat = data.result.latitude;
       long = data.result.longitude;
       zoom = 15;
-      console.log(date.value);
-
-      if (!date.value)
-        return fetch(
-          `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${long}`
-        );
 
       return fetch(
         `https://data.police.uk/api/crimes-street/all-crime?lat=${lat}&lng=${long}&date=${date.value}`
@@ -52,7 +54,8 @@ function toggleToNone() {
   loader.style.display = "none"
 }
 function dealWithResponse(response) {
-  if (!response.ok) throw new Error(response.status);
+  // if (!response.ok) throw new Error(response.status);
+  if (response.statusCode !== 200) (loader.textContent = 'Error, postcode not found!')
   return response.json();
 }
 
@@ -438,9 +441,7 @@ function createSvgContent() {
     svg.removeChild(svg.lastChild);
   }
   console.log(svg)
-  // var x = window.matchMedia("(max-width: 800px)")
-
-  // if(x.matches){
+ 
   let objectKyes = Object.keys(crimes);
   let objectValues = Object.values(crimes);
   let maxWidth = Math.max(...objectValues);
@@ -450,9 +451,9 @@ function createSvgContent() {
   );
 
   var svgNS = "http://www.w3.org/2000/svg";
-  svgtitle.innerText = `Crime Statistics in ${postcodeValue}`;
+  svgtitle.textContent = `Crime Statistics in ${postcodeValue.toUpperCase()}`;
   const title = document.createElement("title");
-  title.innerText = `Crime Statistics in ${postcodeValue}`;
+  title.textContent = `Crime Statistics in ${postcodeValue}`;
   title.setAttribute("id", "title");
   svg.appendChild(title);
   let y = 0;
@@ -469,7 +470,7 @@ function createSvgContent() {
     text.setAttribute("y", 10 + y);
     text.setAttribute("dy", "0.35em");
     text.setAttribute("class", "svgText");
-    text.innerHTML = `${objectKyes[index]} ${objectValues[index]}`;
+    text.textContent = `${objectKyes[index]} ${objectValues[index]}`;
     y += 21;
 
     g.appendChild(rect);
@@ -479,5 +480,5 @@ function createSvgContent() {
     textColor = document.querySelector("figcaption")
     textColor.style.color = "white"
   });
-// }
 }
+
