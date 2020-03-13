@@ -16,23 +16,26 @@
       <h1>Are you <span class="really fadeInUp">REALLY</span> safe? 🚓</h1>
     </header>
     <form action="" class="postcode">
-      <label for="postcode date">
+      <label for="postcode">
         Postcode:
         <input
           name="postcode"
           id="postcode"
           type="text"
           placeholder=" Your post code here"
+          required
         />
-        Date:
-        <input type="month" name="date" id="date" min="2017-01" max="2020-01" />
+        <label for="date">
+          Date:
+          <input type="month" name="date" id="date" min="2017-01" max="2020-01" required />
+        </label>
       </label>
 
       <button type="submit">Enter</button>
     </form>
     <div id="map"></div>
     <div class="loader">
-      <h3>THe contenet is Loading...</h3>
+      <h3>The content is loading...</h3>
     </div>
     <section id="svgSection">
       <figure>
