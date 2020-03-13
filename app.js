@@ -2,7 +2,6 @@ const postcode = document.querySelector(".postcode");
 let lat = 51.510357;
 let long = -0.116773;
 let zoom = 8;
-let totalCrimes = 0;
 let crimes = {};
 let postcodeValue = "";
 const date = document.querySelector("[name=date]");
@@ -19,14 +18,12 @@ formDate.setAttribute('max',  `${y}-0${m}`)
 
 postcode.addEventListener("submit", event => {
   loader.style.display = "block"
-  totalCrimes = 0;
   crimes = {};
   event.preventDefault();
   postcodeValue = event.target.elements.postcode.value;
   fetch(`https://api.postcodes.io/postcodes/${postcodeValue}`)
     .then(dealWithResponse)
     .then(data => {
-      console.log(data)
       lat = data.result.latitude;
       long = data.result.longitude;
       zoom = 15;
@@ -37,7 +34,6 @@ postcode.addEventListener("submit", event => {
     })
     .then(dealWithResponse)
     .then(data => {
-      totalCrimes = data.length;
       data.forEach(item => {
         if (!crimes[item.category]) crimes[item.category] = 0;
         crimes[item.category] += 1;
@@ -440,8 +436,7 @@ function createSvgContent() {
   while (svg.firstChild) {
     svg.removeChild(svg.lastChild);
   }
-  console.log(svg)
- 
+
   let objectKyes = Object.keys(crimes);
   let objectValues = Object.values(crimes);
   let maxWidth = Math.max(...objectValues);
