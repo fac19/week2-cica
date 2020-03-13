@@ -7,6 +7,7 @@ const svgtitle = document.querySelector("#svgTitle");
 let lat = 51.510357;
 let long = -0.116773;
 let zoom = 8;
+
 let crimes = {};
 let postcodeValue = "";
 
@@ -15,6 +16,7 @@ n =  new Date();
 y = n.getFullYear();
 m = n.getMonth() -1;
 let formDate = document.getElementById('date');
+
 formDate.setAttribute('max',  `${y}-0${m}`)
 
 postcode.addEventListener("submit", event => {
@@ -51,9 +53,11 @@ function toggleToNone() {
   loader.style.display = "none"
 }
 function dealWithResponse(response) {
-  // if (!response.ok) throw new Error(response.status);
-  if (response.statusCode !== 200) (loader.textContent = 'Error, postcode not found!')
-  return response.json();
+  if (!response.ok) {
+    loader.textContent = 'Error, postcode not found!'
+    throw new Error(response.status);
+  } 
+
 }
 
 function initMap() {
